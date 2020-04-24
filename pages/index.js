@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Layout, { siteTitle } from '../components/Layout';
-import Alert from '../components/Alert';
 
-export default function Home() {
+import { getSortedPostsData } from '../lib/posts';
+import Layout, { siteTitle } from '../components/Layout';
+
+export default function Home({ allPostsData }) {
   return (
     <Layout home>
       <Head>
@@ -15,7 +16,38 @@ export default function Home() {
           is me experimenting with NEXT.js
         </p>
       </section>
-      <Alert type="success">Yay, success</Alert>
+      <section className="py-4">
+        <Link href="/movies">
+          <a>go check a movie</a>
+        </Link>
+      </section>
+      <section className="py-8">
+        <h2 className="font-serif text-4xl">Blog</h2>
+        <ul className="list-none">
+          {allPostsData.map(({ id, date, title }) => (
+            <li className="text-md pb-2" key={id}>
+              {title} <br /> {date}
+            </li>
+          ))}
+        </ul>
+      </section>
     </Layout>
   );
+}
+
+// use getServerSideProps when you want to fetch data at request time
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {},
+//   };
+// }
+
+// use getStaticProps if the page can be generated at build time
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
 }

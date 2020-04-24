@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from './Layout.module.css';
 
 const name = 'Richard Hoffmann';
-export const siteTitle = 'Next.js Sample Website';
+export const siteTitle = 'digitalmonad';
 
 export default function Layout({ children, home }) {
   return (

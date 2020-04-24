@@ -1,13 +1,13 @@
 /* purgecss start ignore */
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 /* purgecss end ignore */
+@tailwind utilities;
 
 .btn-primary {
   @apply font-bold py-2 px-4 rounded;
 }
 
 body {
-  @apply bg-primary-300 p-12;
+  @apply p-12;
 }
