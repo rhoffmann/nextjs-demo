@@ -29,7 +29,7 @@ export default function Layout({ children, home }) {
           <>
             <img
               src="/images/profile.jpg"
-              className="rounded-full w-32"
+              className="rounded-full w-32 mb-8 shadow-huge"
               alt={name}
             />
             <h1 className="text-3xl">{name}</h1>
