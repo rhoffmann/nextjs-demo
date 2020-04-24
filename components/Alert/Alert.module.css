@@ -1,0 +1,14 @@
+.root {
+  border-radius: 6px;
+  padding: 2rem;
+}
+
+.success {
+  border: 2px solid green;
+  color: green;
+}
+
+.error {
+  border: 2px solid red;
+  color: red;
+}
