@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -5,7 +6,11 @@ import { getSortedPostsData } from '../lib/posts';
 import Date from '../components/Date';
 import Layout, { siteTitle } from '../components/Layout';
 
-export default function Home({ allPostsData }) {
+export default function Home({
+  allPostsData,
+}: {
+  allPostsData: { date: string; title: string; id: string }[];
+}) {
   return (
     <Layout home>
       <Head>
@@ -27,9 +32,10 @@ export default function Home({ allPostsData }) {
         <ul className="list-none">
           {allPostsData.map(({ id, date, title }) => (
             <li className="pb-2" key={id}>
-              <Link href={`/posts/${id}`}>
+              <Link href={`/posts/[id]`} as={`/posts/${id}`}>
                 <a className="text-primary-500 text-lg">
-                  {title} <br />
+                  {title}
+                  <br />
                 </a>
               </Link>
               <small className="text-sm opacity-50">
@@ -51,11 +57,11 @@ export default function Home({ allPostsData }) {
 // }
 
 // use getStaticProps if the page can be generated at build time
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
   const allPostsData = getSortedPostsData();
   return {
     props: {
       allPostsData,
     },
   };
-}
+};

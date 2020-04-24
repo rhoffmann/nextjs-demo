@@ -6,7 +6,12 @@ import styles from './Layout.module.css';
 const name = 'Richard Hoffmann';
 export const siteTitle = 'digitalmonad';
 
-export default function Layout({ children, home }) {
+type LayoutProps = {
+  children: React.ReactNode;
+  home?: boolean;
+};
+
+export default function Layout({ children, home }: LayoutProps) {
   return (
     <div className={styles.container}>
       <Head>

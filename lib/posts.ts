@@ -45,7 +45,7 @@ export async function getPostData(id) {
   return {
     id,
     contentHtml,
-    ...matterResult.data,
+    ...(matterResult.data as { date: string; title: string }),
   };
 }
 
@@ -59,11 +59,11 @@ export function getSortedPostsData() {
 
     return {
       id,
-      ...matterResult.data,
+      ...(matterResult.data as { date: string; title: string }),
     };
   });
 
   return allPostsData.sort((a, b) => {
-    a.date < b.date ? 1 : -1;
+    return a.date < b.date ? 1 : -1;
   });
 }
